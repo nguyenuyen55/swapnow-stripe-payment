@@ -11,10 +11,11 @@ public class WebController {
     public static final String CANCEL_URL = "pay/cancel";
     @Value("${stripe.public.key}")
     private String stripePublicKey;
-
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("stripePublicKey", stripePublicKey);
+        model.addAttribute("urlcancel", CANCEL_URL);
+        model.addAttribute("urlsuccess", SUCCESS_URL);
         return "checkout";
     }
 

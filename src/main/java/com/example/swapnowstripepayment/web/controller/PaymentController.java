@@ -12,19 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PaymentController {
 
-    static int calculateOrderAmount(Object[] items) {
-        // Replace this constant with a calculation of the order's amount
-        // Calculate the order total on the server to prevent
-        // people from directly manipulating the amount on the client
-        return 1400;
-    }
 
 @PostMapping("/create-payment-intent")
     public CreatePaymentResponse createPaymentIntent(@RequestBody CreatePayment createPayment) throws StripeException {
         PaymentIntentCreateParams params =
                 PaymentIntentCreateParams.builder()
                         .setAmount(15*100L) //có 15usd thanh toan
-                        .setCurrency("usd")
+                        .setCurrency("usd") //list currency https://stripe.com/docs/currencies
                         .setAutomaticPaymentMethods(
                                 PaymentIntentCreateParams.AutomaticPaymentMethods
                                         .builder()
